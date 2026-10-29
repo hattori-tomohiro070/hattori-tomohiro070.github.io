@@ -1,0 +1,12 @@
+# docx から自動生成されるファイル
+data.js
+_site/
+
+# サイトには不要な手元の資料（公開リポジトリに載せない）
+proposals/
+publicationlist.tex
+研究業績リスト_*.docx
+
+# Word が編集中に作る一時ファイル
+~$*.docx
+.DS_Store

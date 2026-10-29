@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tomohiro Hattori</title>
+<meta name="description" content="Tomohiro Hattori — Ph.D. student at Keio University working on quantum optimization.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Serif+JP:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdfcf9; --fg: #222; --muted: #6b6b6b; --line: #e6e2d9; --accent: #8a1c2b; --card: #fff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17171a; --fg: #e8e6e1; --muted: #9a978f; --line: #2e2d2a; --accent: #e07a86; --card: #1e1e22; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+    font: 17px/1.7 "Source Serif 4", "Noto Serif JP", Georgia, serif; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 64px 24px 48px; display: grid; grid-template-columns: 260px 1fr; gap: 64px; }
+  aside { position: sticky; top: 64px; align-self: start; }
+  h1 { font-size: 32px; margin: 0; font-weight: 600; line-height: 1.2; }
+  .name-alt { color: var(--muted); font-size: 17px; margin: 2px 0 16px; }
+  .sub { color: var(--muted); font-size: 15px; line-height: 1.5; }
+  .links { list-style: none; padding: 0; margin: 20px 0; font: 14px Inter, sans-serif; display: flex; flex-direction: column; gap: 8px; }
+  .links a { display: inline-flex; align-items: center; gap: 8px; color: var(--fg); }
+  .links a:hover { color: var(--accent); text-decoration: none; }
+  .links svg { width: 16px; height: 16px; flex: none; fill: currentColor; color: var(--accent); }
+  .lang { font: 13px Inter, sans-serif; border: 1px solid var(--line); background: var(--card); color: var(--fg);
+    border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+  nav.toc { font: 14px/2 Inter, sans-serif; margin-top: 20px; border-top: 1px solid var(--line); padding-top: 12px; }
+  nav.toc a { display: block; color: var(--muted); }
+  section { margin-bottom: 48px; scroll-margin-top: 24px; }
+  h2 { font-size: 22px; font-weight: 600; border-bottom: 1px solid var(--line); padding-bottom: 6px; margin: 0 0 18px; }
+  h3 { font: 500 13px Inter, sans-serif; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 28px 0 10px; }
+  ol.pubs { padding-left: 0; list-style: none; counter-reset: n; margin: 0; }
+  ol.pubs li { counter-increment: n; position: relative; padding-left: 2.6em; margin-bottom: 14px; }
+  ol.pubs li::before { content: "[" counter(n) "]"; position: absolute; left: 0; color: var(--muted); font-size: 14px; top: 2px; }
+  .title { font-weight: 600; }
+  .meta { color: var(--muted); font-size: 15px; }
+  .self { text-decoration: underline; text-underline-offset: 3px; }
+  .badge { font: 500 11px Inter, sans-serif; padding: 1px 7px; border-radius: 4px; border: 1px solid var(--line); color: var(--muted); margin-left: 4px; vertical-align: 2px; white-space: nowrap; }
+  .badge.invited, .badge.award { border-color: var(--accent); color: var(--accent); }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .tags span { font: 13px Inter, sans-serif; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 2px 12px; }
+  table.rows { border-collapse: collapse; width: 100%; }
+  table.rows td { padding: 6px 0; vertical-align: top; border-bottom: 1px dotted var(--line); }
+  table.rows td:first-child { width: 170px; padding-right: 16px; color: var(--muted); font-size: 15px; }
+  table.rows .org { color: var(--muted); font-size: 15px; }
+  footer { color: var(--muted); font: 13px Inter, sans-serif; text-align: center; padding: 24px; }
+  @media (max-width: 820px) {
+    .wrap { grid-template-columns: 1fr; gap: 32px; padding: 32px 16px; }
+    aside { position: static; }
+    .links { flex-direction: row; flex-wrap: wrap; gap: 8px 18px; }
+    nav.toc { display: none; }
+    table.rows td:first-child { width: 96px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <aside>
+    <h1 data-i18n="name"></h1>
+    <div class="name-alt" id="nameAlt"></div>
+    <div class="sub" data-i18n="position"></div>
+    <div class="sub" data-i18n="lab" style="margin-top:4px"></div>
+    <ul class="links" id="links"></ul>
+    <button class="lang" id="langBtn">日本語</button>
+    <nav class="toc">
+      <a href="#about" data-label="about"></a>
+      <a href="#career" data-label="career"></a>
+      <a href="#publications" data-label="publications"></a>
+      <a href="#presentations" data-label="presentations"></a>
+      <a href="#awards" data-label="awards"></a>
+    </nav>
+  </aside>
+
+  <main>
+    <section id="about">
+      <h2 data-label="about"></h2>
+      <p data-i18n="bio"></p>
+      <div class="tags" id="interests"></div>
+    </section>
+    <section id="career">
+      <h2 data-label="career"></h2>
+      <h3 data-label="education"></h3><table class="rows" id="education"></table>
+      <h3 data-label="teaching"></h3><table class="rows" id="teaching"></table>
+      <h3 data-label="experience"></h3><table class="rows" id="experience"></table>
+    </section>
+    <section id="publications">
+      <h2 data-label="publications"></h2>
+      <h3 data-label="journals"></h3><ol class="pubs" id="journals"></ol>
+      <h3 data-label="proceedings"></h3><ol class="pubs" id="proceedings"></ol>
+      <h3 data-label="preprints"></h3><ol class="pubs" id="preprints"></ol>
+    </section>
+    <section id="presentations">
+      <h2 data-label="presentations"></h2>
+      <h3 data-label="international"></h3><ol class="pubs" id="international"></ol>
+      <h3 data-label="domestic"></h3><ol class="pubs" id="domestic"></ol>
+    </section>
+    <section id="awards">
+      <h2 data-label="awards"></h2>
+      <table class="rows" id="awardList"></table>
+    </section>
+  </main>
+</div>
+<footer>© <span id="yr"></span> Tomohiro Hattori</footer>
+
+<script src="data.js"></script>
+<script>
+const L = {
+  en: { about: "About", career: "Career", education: "Education", experience: "Internships", teaching: "Teaching",
+        publications: "Publications", presentations: "Presentations", awards: "Awards & Grants",
+        journals: "Peer-reviewed Journal Articles", proceedings: "Conference Proceedings", preprints: "Preprints",
+        international: "International Conferences", domestic: "Domestic Conferences (in Japanese)",
+        oral: "Oral", poster: "Poster", invited: "Invited", upcoming: "Upcoming", present: "present", switch: "日本語" },
+  ja: { about: "自己紹介", career: "経歴", education: "学歴", experience: "インターン", teaching: "教育歴",
+        publications: "論文", presentations: "学会発表", awards: "受賞・奨学金",
+        journals: "査読付き学術論文", proceedings: "国際会議録", preprints: "プレプリント",
+        international: "国際会議", domestic: "国内学会",
+        oral: "口頭", poster: "ポスター", invited: "招待講演", upcoming: "予定", present: "現在", switch: "English" }
+};
+const S = window.SITE, today = new Date().toISOString().slice(0, 10);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const authors = a => a.map(n => SELF_NAMES.includes(n) ? `<span class="self">${esc(n)}</span>` : esc(n)).join(", ");
+const fmtDate = (d, lang) => {
+  const [y, m, day] = d.split("-").map(Number);
+  if (!m) return String(y);
+  if (lang === "ja") return day ? `${y}年${m}月${day}日` : `${y}年${m}月`;
+  return new Date(y, m - 1, day || 1).toLocaleDateString("en-GB", day ? { day: "numeric", month: "short", year: "numeric" } : { month: "short", year: "numeric" });
+};
+
+function render(lang) {
+  const t = L[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(el => el.textContent = S.profile[el.dataset.i18n][lang]);
+  document.querySelectorAll("[data-label]").forEach(el => el.textContent = t[el.dataset.label]);
+  document.getElementById("nameAlt").textContent = S.profile.name[lang === "en" ? "ja" : "en"];
+  document.getElementById("langBtn").textContent = t.switch;
+  document.getElementById("interests").innerHTML = S.profile.interests[lang].map(x => `<span>${esc(x)}</span>`).join("");
+
+  const period = r => `${fmtDate(r.start, lang)} – ${r.end ? fmtDate(r.end, lang) : t.present}`;
+  const row = r => `<tr><td>${period(r)}</td><td>${esc(r.title[lang])}${r.org[lang] ? `<div class="org">${esc(r.org[lang])}</div>` : ""}</td></tr>`;
+  ["education", "experience", "teaching"].forEach(k => document.getElementById(k).innerHTML = (S[k] || []).map(row).join(""));
+
+  const pub = p => `<li>${authors(p.authors)}, “<span class="title">${esc(p.title)}</span>,”
+    <span class="meta"><i>${esc(p.venue)}</i> ${esc(p.detail)} (${p.year}).
+    ${p.doi ? `<a href="https://doi.org/${p.doi}">DOI</a>` : ""}
+    ${p.arxiv ? `<a href="https://arxiv.org/abs/${p.arxiv}">arXiv</a>` : ""}</span></li>`;
+  ["journals", "proceedings", "preprints"].forEach(k => document.getElementById(k).innerHTML = S[k].map(pub).join(""));
+
+  const talk = p => `<li>${authors(p.authors)}, “<span class="title">${esc(p.title)}</span>,”
+    <span class="meta">${esc(p.venue)}, ${fmtDate(p.date, lang)}.</span>
+    <span class="badge ${p.type}">${t[p.type]}</span>
+    ${p.date > today ? `<span class="badge">${t.upcoming}</span>` : ""}
+    ${p.note ? `<span class="badge award">${esc(p.note[lang])}</span>` : ""}</li>`;
+  ["international", "domestic"].forEach(k => document.getElementById(k).innerHTML = S[k].map(talk).join(""));
+
+  document.getElementById("awardList").innerHTML = S.awards
+    .map(a => `<tr><td>${fmtDate(a.date, lang)}</td><td>${esc(a.title[lang])}</td></tr>`).join("");
+  // docx で表が空のセクションは見出しごと隠す
+  document.querySelectorAll("main h3").forEach(h => h.hidden = !h.nextElementSibling.children.length);
+  try { localStorage.setItem("lang", lang); } catch (e) {}
+}
+
+// アイコンは簡易SVG（外部ライブラリ不要）
+const ICON = {
+  email: '<path d="M2 4h20v16H2zM4 6v.5l8 5 8-5V6zm0 2.8V18h16V8.8l-8 5z"/>',
+  orcid: '<path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM8.3 7.2a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8zM7.6 10h1.4v7H7.6zm3 0h3.2c3 0 4.4 2.1 4.4 3.5 0 1.9-1.5 3.5-4.3 3.5h-3.3zm1.4 1.3v4.4h1.7c2.4 0 3-1.3 3-2.2 0-1.4-.9-2.2-2.9-2.2z"/>',
+  scholar: '<path d="M12 3 1 9.5l4 2.4V17c2 2.3 4.6 3 7 3s5-.7 7-3v-5.1l2-1.2V16h2V9.5zm0 2.3 7 4.2-7 4.2-7-4.2z"/>',
+  researchmap: '<path d="M4 3h16v18H4zm2 2v14h12V5zm2 2h8v2H8zm0 4h8v2H8zm0 4h5v2H8z"/>',
+  github: '<path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 4.9.4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/>',
+  cv: '<path d="M6 2h9l5 5v15H6zm8 1.5V8h4.5zM8 12h8v2H8zm0 4h8v2H8z"/>'
+};
+const lk = S.profile.links;
+document.getElementById("links").innerHTML = [
+  ["email", "Email", lk.email && "mailto:" + lk.email], ["orcid", "ORCID", lk.orcid],
+  ["scholar", "Google Scholar", lk.scholar], ["researchmap", "researchmap", lk.researchmap],
+  ["github", "GitHub", lk.github], ["cv", "CV (PDF)", lk.cv]
+].filter(x => x[2]).map(([k, label, url]) =>
+  `<li><a href="${url}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true">${ICON[k]}</svg>${label}</a></li>`).join("");
+
+let lang = "en";
+try { lang = localStorage.getItem("lang") || "en"; } catch (e) {}
+render(lang);
+document.getElementById("langBtn").onclick = () => render(lang = lang === "en" ? "ja" : "en");
+document.getElementById("yr").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
