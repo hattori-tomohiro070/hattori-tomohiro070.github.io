@@ -72,6 +72,7 @@ def build(sec):
     profile["interests"] = {lang: [x.strip() for x in re.split(r"[,，、]", prof["interests"][col]) if x.strip()]
                             for lang, col in (("en", "English"), ("ja", "日本語"))}
     profile["links"] = {LINK_ROWS[r["項目"].lower()]: r["URL"] for r in sec["links"] if r["項目"].lower() in LINK_ROWS}
+    profile["related"] = [{"label": bi(r, "表示名"), "url": r["URL"]} for r in sec.get("related", []) if r["URL"]]
     self_names = [n for col in ("English", "日本語") for n in authors(prof["self"][col])]
 
     def career(key):
